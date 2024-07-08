@@ -1,0 +1,60 @@
+{
+  "$id": "https://example.com/address.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "GraphAI",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "number"
+    },
+    "nodes": {
+      "additionalProperties": {
+        "anyOf": [
+          { "$ref": "#/definitions/staticNode" },
+          { "$ref": "#/definitions/computedNode" }
+        ]
+      }
+    },
+    "concurrency": {
+      "type": "integer"
+    },
+    "loop": {
+      "type": "string"
+    },
+    "verbose": {
+      "type": "boolean"
+    },
+    "retry": {
+      "type": "integer"
+    }
+  },
+  "required": [ "nodes"],
+  "definitions": {
+    "computedNode": {
+      "type": "object",
+      "properties": {
+        "agent": {
+          "type": "string" 
+        }
+      },
+      "required": [ "type" ]
+    },
+    "staticNode": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "anyOf": [
+            { "type": "string" }, { "type": "integer" }, { "type": "object" }, { "type": "array" }
+          ]
+        },
+        "update": {
+          "type": "string"
+        },
+        "isResult": {
+          "type": "boolean"
+        }
+      },
+      "required": [ "value" ]
+    }
+  }
+}

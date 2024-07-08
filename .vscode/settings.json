@@ -1,0 +1,7 @@
+{
+  "yaml.schemas": {
+  "schema/graphai.json": [
+    "*.yaml"
+  ]
+}
+}
