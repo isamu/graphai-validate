@@ -9,7 +9,7 @@
     },
     "nodes": {
       "additionalProperties": {
-        "anyOf": [
+        "oneOf": [
           { "$ref": "#/definitions/staticNode" },
           { "$ref": "#/definitions/computedNode" }
         ]
@@ -35,9 +35,12 @@
       "properties": {
         "agent": {
           "type": "string" 
+        },
+        "input": {
+          "$ref": "#/definitions/anyData"
         }
       },
-      "required": [ "type" ]
+      "required": [ "agent" ]
     },
     "staticNode": {
       "type": "object",
@@ -55,6 +58,11 @@
         }
       },
       "required": [ "value" ]
+    },
+    "anyData": {
+       "anyOf": [
+         { "type": "string" }, { "type": "integer" }, { "type": "object" }, { "type": "array" }
+       ]
     }
   }
 }
